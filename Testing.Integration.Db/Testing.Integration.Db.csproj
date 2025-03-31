@@ -11,6 +11,7 @@
     <ItemGroup>
         <ProjectReference Include="..\Application\Application.csproj" />
         <ProjectReference Include="..\Domain\Domain.csproj" />
+        <ProjectReference Include="..\Persistence\Persistence.csproj" />
         <ProjectReference Include="..\Testing.Framework\Testing.Framework.csproj" />
     </ItemGroup>
 
@@ -35,6 +36,12 @@
       <None Update="appsettings.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Application\UserService.steps.cs">
+        <DependentUpon>UserService.specs.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

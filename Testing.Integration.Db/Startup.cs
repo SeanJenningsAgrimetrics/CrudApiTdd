@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using Dapper;
 using NUnit.Framework;
 
 namespace Integration.Db;
@@ -12,7 +11,6 @@ public class Startup
     [OneTimeSetUp]
     public void BeforeAllTests()
     {
-        // Migrations project must be run before starting the database
         var server = Settings.Database.Server;
         database_process = new Process();
         var startInfo = new ProcessStartInfo

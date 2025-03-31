@@ -2,7 +2,7 @@
 using Domain.Entities;
 using FluentAssertions;
 using Framework;
-using Repositories;
+using Persistence;
 
 namespace Integration.Db.Application;
 

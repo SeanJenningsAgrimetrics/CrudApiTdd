@@ -1,7 +1,6 @@
 ﻿using Domain.Entities;
-using Persistence;
 
-namespace Repositories;
+namespace Persistence;
 
 public class UserRepository(Db db)
 {

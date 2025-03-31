@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Domain.Entities;
-using Repositories;
+using Persistence;
 
 namespace Application;
 
