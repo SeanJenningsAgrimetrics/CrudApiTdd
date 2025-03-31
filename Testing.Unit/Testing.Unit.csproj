@@ -20,8 +20,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Domain\User.steps.cs">
-        <DependentUpon>User.specs.cs</DependentUpon>
+      <Compile Update="Domain\UserSteps.cs">
+        <DependentUpon>UserShould.cs</DependentUpon>
       </Compile>
     </ItemGroup>
 

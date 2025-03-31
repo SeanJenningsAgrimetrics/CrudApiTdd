@@ -2,10 +2,10 @@
 
 namespace Integration.Db.Application;
 
-public partial class UserServiceSpecs
+public partial class UserServiceShould
 {
    [Test]
-   public void can_create_user()
+   public void create_a_user()
    {
       Given(user_details);
       When(adding_a_user);
@@ -14,7 +14,7 @@ public partial class UserServiceSpecs
    }   
    
    [Test]
-   public void cannot_create_a_user_with_same_email()
+   public void not_create_a_user_with_same_email()
    {
       Given(a_user_exists);
       When(Validating(saving_another_user_with_same_email));
@@ -22,7 +22,7 @@ public partial class UserServiceSpecs
    }
 
    [Test]
-   public void can_list_users()
+   public void list_users()
    {
       Given(a_user_exists);
       And(another_user_exists);

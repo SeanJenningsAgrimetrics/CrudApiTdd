@@ -6,14 +6,14 @@ using Persistence;
 
 namespace Integration.Db.Application;
 
-public partial class UserServiceSpecs() : TruncateDbSpecification(Settings.Database.Connection)
+public partial class UserServiceShould() : TruncateDbSpecification(Settings.Database.Connection)
 {
     private Guid id;
     private Guid another_id;
-    private User retrieved_entity = null!;
+    private User? retrieved_entity;
     private IList<User> entities = null!;
     private UserRepository repository = null!;
-    private UserService _userService = null!;
+    private UserService userService = null!;
 
     private const string name = "wibble";
     private const string email = "wobble@gmail.com";
@@ -28,19 +28,19 @@ public partial class UserServiceSpecs() : TruncateDbSpecification(Settings.Datab
         entities = null!;
         retrieved_entity = null!;
         repository = new UserRepository(new Persistence.Db(Settings.Database.Connection));
-        _userService = new UserService(repository);
+        userService = new UserService(repository);
     }
     
     private static void user_details(){}     
     
     private void adding_a_user()
     {
-        id = _userService.Add(name, email).Await();
+        id = userService.Add(name, email).Await();
     }    
     
     private void saving_another_user()
     {
-        another_id = _userService.Add(new_name, new_email).Await();
+        another_id = userService.Add(new_name, new_email).Await();
     }
     
     private void a_user_exists()
@@ -55,24 +55,24 @@ public partial class UserServiceSpecs() : TruncateDbSpecification(Settings.Datab
     
     private void saving_another_user_with_same_email()
     {
-        _userService.Add(new_name, email).Await();
+        userService.Add(new_name, email).Await();
     }    
     
     private void retrieving_a_user()
     {
-        retrieved_entity = _userService.Get(id).Await()!;
+        retrieved_entity = userService.Get(id).Await();
     }        
     
     private void listing_entities()
     {
-        entities = _userService.GetAll().Await();
+        entities = userService.GetAll().Await();
     }     
     
     private void the_user_is_correct()
     {
-        retrieved_entity.Id.Should().Be(id);
-        retrieved_entity.FullName.ToString().Should().Be(name);
-        retrieved_entity.Email.ToString().Should().Be(email);
+        retrieved_entity?.Id.Should().Be(id);
+        retrieved_entity?.FullName.ToString().Should().Be(name);
+        retrieved_entity?.Email.ToString().Should().Be(email);
     }
     
     private void the_list_is_correct()

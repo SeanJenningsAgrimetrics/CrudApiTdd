@@ -4,14 +4,7 @@ using Persistence;
 
 namespace Application;
 
-public interface IAmAUserService
-{
-    public Task<User?> Get(Guid id);
-    public Task<IList<User>> GetAll();
-    public Task<Guid> Add(string name, string email);
-}
-
-public class UserService(UserRepository repository) : IAmAUserService
+public class UserService(UserRepository repository)
 {
     public async Task<User?> Get(Guid id)
     {

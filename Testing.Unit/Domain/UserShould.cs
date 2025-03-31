@@ -2,10 +2,10 @@
 
 namespace Unit.Domain;
 
-public partial class UserSpecs
+public partial class UserShould
 {
     [Test]
-    public void a_user_must_have_a_name()
+    public void have_a_name()
     {
         Scenario(() =>
         {
@@ -33,7 +33,7 @@ public partial class UserSpecs
     }    
     
     [Test]
-    public void a_user_must_have_an_email()
+    public void have_an_email()
     {
         Scenario(() =>
         {
@@ -61,7 +61,7 @@ public partial class UserSpecs
     }
 
     [Test]
-    public void can_create_valid_user()
+    public void create_valid_user()
     {
         Given(valid_inputs);
         When(creating_a_user);

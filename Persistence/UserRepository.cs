@@ -10,11 +10,6 @@ public class UserRepository(Db db)
             new { user.Id, user.FullName, user.Email });
     }
 
-    public async Task Remove(Guid id)
-    {
-        await db.ExecuteAsync("DELETE FROM [User].[Users] WHERE Id = @Id", new { Id = id });
-    }
-
     public async Task<User?> Get(Guid id)
     {
         return (await db.QueryAsync<User>("SELECT Id, FullName, Email FROM [User].[Users] WHERE Id = @Id",

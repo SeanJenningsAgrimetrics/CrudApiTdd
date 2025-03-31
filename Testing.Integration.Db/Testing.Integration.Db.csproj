@@ -39,8 +39,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Application\UserService.steps.cs">
-        <DependentUpon>UserService.specs.cs</DependentUpon>
+      <Compile Update="Application\UserServiceSteps.cs">
+        <DependentUpon>UserServiceShould.cs</DependentUpon>
       </Compile>
     </ItemGroup>
 

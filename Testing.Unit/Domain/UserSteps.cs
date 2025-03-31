@@ -4,7 +4,7 @@ using Framework;
 
 namespace Unit.Domain;
 
-public partial class UserSpecs : Specification
+public partial class UserShould : Specification
 {
     private Guid id;
     private string name = null!;
