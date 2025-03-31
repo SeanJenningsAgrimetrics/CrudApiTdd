@@ -35,18 +35,12 @@ public partial class UserServiceSpecs() : TruncateDbSpecification(Settings.Datab
     
     private void adding_a_user()
     {
-        id = _userService.Add(name, email).GetAwaiter().GetResult();
+        id = _userService.Add(name, email).Await();
     }    
     
     private void saving_another_user()
     {
-        another_id = _userService.Add(new_name, new_email).GetAwaiter().GetResult();
-    }
-    
-    private void updating_a_user()
-    {
-        _userService.Update(id, new_name, new_email).GetAwaiter().GetResult();
-        retrieving_a_user();
+        another_id = _userService.Add(new_name, new_email).Await();
     }
     
     private void a_user_exists()
@@ -61,42 +55,25 @@ public partial class UserServiceSpecs() : TruncateDbSpecification(Settings.Datab
     
     private void saving_another_user_with_same_email()
     {
-        _userService.Add(new_name, email).GetAwaiter().GetResult();
+        _userService.Add(new_name, email).Await();
     }    
     
     private void retrieving_a_user()
     {
-        retrieved_entity = _userService.Get(id).GetAwaiter().GetResult()!;
+        retrieved_entity = _userService.Get(id).Await()!;
     }        
     
     private void listing_entities()
     {
-        entities = _userService.GetAll().GetAwaiter().GetResult();
+        entities = _userService.GetAll().Await();
     }     
-    
-    private void removing_an_user()
-    {
-        _userService.Remove(id).GetAwaiter().GetResult();
-    }    
     
     private void the_user_is_correct()
     {
         retrieved_entity.Id.Should().Be(id);
         retrieved_entity.FullName.ToString().Should().Be(name);
         retrieved_entity.Email.ToString().Should().Be(email);
-    }      
-    
-    private void the_user_is_updated()
-    {
-        retrieved_entity.Id.Should().Be(id);
-        retrieved_entity.FullName.ToString().Should().Be(new_name);
-        retrieved_entity.Email.ToString().Should().Be(new_email);
-    }    
-    
-    private void the_user_is_null()
-    {
-        retrieved_entity.Should().Be(null);
-    }    
+    }
     
     private void the_list_is_correct()
     {

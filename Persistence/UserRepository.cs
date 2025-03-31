@@ -6,16 +6,8 @@ public class UserRepository(Db db)
 {
     public async Task Save(User user)
     {
-        if (await Get(user.Id) != null)
-        {
-            await db.ExecuteAsync("UPDATE [User].[Users] SET FullName = @FullName, Email = @Email WHERE Id = @Id",
-                new { user.Id, user.FullName, user.Email });
-        }
-        else
-        {
-            await db.ExecuteAsync("INSERT INTO [User].[Users] (Id, FullName, Email) VALUES (@Id, @FullName, @Email)",
-                new { user.Id, user.FullName, user.Email });
-        }
+        await db.ExecuteAsync("INSERT INTO [User].[Users] (Id, FullName, Email) VALUES (@Id, @FullName, @Email)",
+            new { user.Id, user.FullName, user.Email });
     }
 
     public async Task Remove(Guid id)

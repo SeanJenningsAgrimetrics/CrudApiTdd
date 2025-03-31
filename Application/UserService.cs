@@ -9,8 +9,6 @@ public interface IAmAUserService
     public Task<User?> Get(Guid id);
     public Task<IList<User>> GetAll();
     public Task<Guid> Add(string name, string email);
-    public Task Update(Guid id, string name, string email);
-    public Task Remove(Guid id);
 }
 
 public class UserService(UserRepository repository) : IAmAUserService
@@ -36,20 +34,5 @@ public class UserService(UserRepository repository) : IAmAUserService
         var user = new User(id, name, email);
         await repository.Save(user);
         return id;
-    }
-
-    public async Task Update(Guid id, string name, string email)
-    {
-        var user = await repository.Get(id);
-        if (user is null) return;
-        
-        user.UpdateName(name);
-        user.UpdateEmail(email);
-        await repository.Save(user);
-    }
-
-    public async Task Remove(Guid id)
-    {
-        await repository.Remove(id);
     }
 }
