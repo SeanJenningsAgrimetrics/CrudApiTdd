@@ -8,6 +8,4 @@ public class User(Guid id, Name fullName, Email email) : Aggregate(id)
     
     public Name FullName { get; private set; } = fullName;
     public Email Email { get; private set; } = email;
-    public void UpdateName(Name name) => FullName = name;
-    public void UpdateEmail(Email email) => Email = email;
 }
