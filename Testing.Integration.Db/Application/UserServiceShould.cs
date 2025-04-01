@@ -29,4 +29,12 @@ public partial class UserServiceShould
       When(listing_entities);
       Then(the_list_is_correct);
    }
+
+   [Test]
+   public void remove_a_user()
+   {
+      Given(a_user_exists);
+      When(removing_a_user);
+      Then(the_user_is_removed);
+   }
 }

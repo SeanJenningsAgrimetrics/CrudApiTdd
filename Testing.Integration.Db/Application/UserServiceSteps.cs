@@ -87,4 +87,15 @@ public partial class UserServiceShould() : TruncateDbSpecification(Settings.Data
         anotherUser.FullName.ToString().Should().Be(new_name);
         anotherUser.Email.ToString().Should().Be(new_email);
     }
+
+    private void removing_a_user()
+    {
+        userService.Remove(id).Await();
+    }
+
+    private void the_user_is_removed()
+    {
+        var user = userService.Get(id).Await();
+        user.Should().BeNull();
+    }
 }

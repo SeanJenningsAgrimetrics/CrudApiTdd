@@ -20,4 +20,9 @@ public class UserRepository(Db db)
     {
         return (await db.QueryAsync<User>("SELECT Id, FullName, Email FROM [User].[Users]")).ToList();
     }
+    
+    public async Task Remove(Guid id)
+    {
+        await db.ExecuteAsync("DELETE FROM [User].[Users] WHERE Id = @Id", new { Id = id });
+    }
 }

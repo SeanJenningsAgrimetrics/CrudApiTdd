@@ -28,4 +28,9 @@ public class UserService(UserRepository repository)
         await repository.Save(user);
         return id;
     }
+
+    public async Task Remove(Guid id)
+    {
+        await repository.Remove(id);
+    }
 }
