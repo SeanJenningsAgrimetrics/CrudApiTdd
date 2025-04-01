@@ -12,6 +12,7 @@ public partial class UserShould : Specification
     private User user = null!;
 
     private const string invalid_email = "wibble";
+    private const string forbidden_email = "bob@gmail.com";
     private const string invalid_name = "Jackie Chan 123";
     private const string valid_email = "wibble@wobble.com";
     private const string valid_name = "Jackie Chan";
@@ -71,5 +72,15 @@ public partial class UserShould : Specification
         user.Id.Should().Be(id);
         user.FullName.ToString().Should().Be(valid_name);
         user.Email.ToString().Should().Be(valid_email);
+    }
+
+    private void a_forbidden_email()
+    {
+        email = forbidden_email;
+    }
+    
+    private void a_forbidden_email_that_is_all_capitalised()
+    {
+        email = forbidden_email.ToUpper();
     }
 }

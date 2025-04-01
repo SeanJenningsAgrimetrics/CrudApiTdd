@@ -61,6 +61,24 @@ public partial class UserShould
     }
 
     [Test]
+    public void not_have_the_forbidden_email()
+    {
+        Given(valid_inputs);
+        And(a_forbidden_email);
+        When(Validating(creating_a_user));
+        Then(Informs("You are not allowed to register"));
+    }
+    
+    [Test]
+    public void not_have_the_forbidden_email_that_is_all_capitalised()
+    {
+        Given(valid_inputs);
+        And(a_forbidden_email_that_is_all_capitalised);
+        When(Validating(creating_a_user));
+        Then(Informs("You are not allowed to register"));
+    }
+
+    [Test]
     public void create_valid_user()
     {
         Given(valid_inputs);

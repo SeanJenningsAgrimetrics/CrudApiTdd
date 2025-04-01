@@ -7,9 +7,11 @@ namespace Domain.Primitives;
 public readonly record struct Email
 {
     private string value { get; }
+    
 
     public Email(string email)
     {
+        string[] forbiddenEmails = ["bob@gmail.com"];
         Validation.BasedOn(errors =>
         {
             if (string.IsNullOrEmpty(email))
@@ -19,6 +21,10 @@ public readonly record struct Email
             else if (!Regex.IsMatch(email,@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)))
             {
                 errors.Add("Email must be valid");
+            }
+            else if (forbiddenEmails.Contains(email.ToLowerInvariant()))
+            {
+                errors.Add("You are not allowed to register");
             }
         });
         value = email;
